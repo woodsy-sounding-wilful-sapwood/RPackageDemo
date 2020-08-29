@@ -1,0 +1,51 @@
+---
+title: "my-vignette"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{my-vignette}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(fars)
+library(dplyr)
+list.files(system.file("extdata", package = "FARS"))
+```
+
+This package contains a bunch of methods that make more convenient to work with FARS casualty data. At the very highest level, this package can be used to construct a scatter plot of accidents overlaid on an outline of the state where they occurred. For example, the code:
+
+```{r}
+fars_map_state("06", 2013)
+```
+
+Shows accidents in the state of California in 2013. You can see the state codes here: https://en.wikipedia.org/wiki/List_of_U.S._state_and_territory_abbreviations
+
+Other features include the ability to summarize accident data for a particular year:
+
+```{r}
+fars_summarize_years(2013)
+```
+
+The ability to read in accident data for a bunch for a bunch of years at once:
+
+```{r}
+fars_read_years(c(2013, 2014, 2015))
+```
+
+Along with low level utility functions that can convert a year into the corresponding FARS file name:
+```{r}
+make_filename(2013)
+```
+
+And a function that can read in a specific file:
+```{r}
+fars_read("accident_2013.csv.bz2")
+```
