@@ -20,4 +20,8 @@ Suggests:
     testthat
 VignetteBuilder: knitr
 Imports: 
-    magrittr
+    magrittr,
+    dplyr,
+    tidyr,
+    maps,
+    graphics
